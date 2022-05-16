@@ -9,7 +9,8 @@
 
 
 window.config = {
-    url: "http://svip.aeert.com:18081",
+    // url: "http://svip.aeert.com:18081",
+    url: "",
     more: ["classification", "color", "tag"],
     classification: [],
     color: [],
