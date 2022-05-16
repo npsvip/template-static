@@ -52,12 +52,11 @@ window.getSms = function (e) {
                 }
             }, 1000);
         } else {
-            layer.msg(res.msg, {icon: 5, anim: 6});
+            layer.msg(res.msg, { icon: 5, anim: 6 });
             getpicSms();
         }
     });
 };
-
 // 获取模板列表
 function getTemplateList(obj) {
     let params = {
@@ -1821,7 +1820,7 @@ function getTemplateList(obj) {
                 ...config.laypage,
                 jump: (obj, first) => {
                     if (!first) {
-                        getTemplateList({current: obj.curr, size: obj.limit});
+                        getTemplateList({ current: obj.curr, size: obj.limit });
                     }
                 },
             });
@@ -1831,7 +1830,6 @@ function getTemplateList(obj) {
 
 (function () {
     "use strict";
-
     // 获取更多分类
     function getMoreClassFn(cb) {
         getMoreClass().then((res) => {
@@ -1841,9 +1839,7 @@ function getTemplateList(obj) {
                 .filter((item) => item.isHot)
                 .forEach((item, index) => {
                     if (item.isHot) {
-                        navItem += `<li class="layui-nav-item ${
-                            index == 0 ? "layui-this" : ""
-                        }"><a href="javascript:;">${item.name}</a></li>`;
+                        navItem += `<li class="layui-nav-item"><a href="javascript:;">${item.name}</a></li>`;
                     }
                 });
             $("#layui-nav").html(navItem);
@@ -1856,12 +1852,12 @@ function getTemplateList(obj) {
 					<div style='text-align: justify;' class='${key}'>
                         <p class='unlimited-class' data-key='${key}Id' >不限</p>
 						${res[key]
-                        .map((item) => {
-                            config.classificationId =
-                                !config.classificationId && item.name == "整站" ? item.id : config.classificationId;
-                            return `<span class='class-span' data-key='${key}Id' data-id='${item.id}'>${item.name}</span>`;
-                        })
-                        .join(" ")}
+                            .map((item) => {
+                                config.classificationId =
+                                    !config.classificationId && item.name == "整站" ? item.id : config.classificationId;
+                                return `<span class='class-span' data-key='${key}Id' data-id='${item.id}'>${item.name}</span>`;
+                            })
+                            .join(" ")}
 					</div>
 					</div>
 					`;
@@ -1912,7 +1908,6 @@ function getTemplateList(obj) {
         config.classParams.name = $("#searchInput").val();
         getTemplateList(config.classParams);
     });
-
     function formValidator(form, cb) {
         const feedbackIcons = {
             valid: "glyphicon glyphicon-ok",
@@ -2025,7 +2020,7 @@ function getTemplateList(obj) {
             delete params.captcha;
             registerApi(params).then((res) => {
                 if (res.code == 500) {
-                    layer.msg(res.msg, {icon: 5, anim: 6});
+                    layer.msg(res.msg, { icon: 5, anim: 6 });
                 } else {
                     dialoghide();
                     localStorage.setItem("user", JSON.stringify(res));
@@ -2039,10 +2034,10 @@ function getTemplateList(obj) {
         formValidator("#login-form", function (params, $form) {
             loginApi(params).then((res) => {
                 if (res.code == 500) {
-                    layer.msg(res.msg, {icon: 5, anim: 6});
+                    layer.msg(res.msg, { icon: 5, anim: 6 });
                 } else {
                     dialoghide();
-                    layer.msg("登录成功！", {icon: 1});
+                    layer.msg("登录成功！", { icon: 1 });
                     localStorage.setItem("user", JSON.stringify(res));
                     isLogin();
                 }
@@ -2075,7 +2070,6 @@ function getTemplateList(obj) {
             );
         });
     });
-
     function laynav() {
         if ($("body").width() > 1200) {
             $("#layui-nav").css("display", "block");
@@ -2086,7 +2080,6 @@ function getTemplateList(obj) {
             $("#layui-nav").addClass("layui-nav-side layui-nav-tree");
         }
     }
-
     $(".collection").click(function () {
         config.classParams.collection = !config.classParams.collection;
         if (config.classParams.collection) {
@@ -2109,8 +2102,6 @@ function getTemplateList(obj) {
                             $(item).addClass("layui-this");
                         }
                     });
-                } else {
-                    $(".layui-nav-item").removeClass("layui-this");
                 }
                 const dom = GetRequest().key.substring(GetRequest().key.length - 2, 0);
                 $(`.${dom} .class-span`).each(function (index, item) {
@@ -2119,7 +2110,7 @@ function getTemplateList(obj) {
                         item.style.color = "#3db389";
                     }
                 });
-                getTemplateList({[GetRequest().key]: GetRequest().id});
+                getTemplateList({ [GetRequest().key]: GetRequest().id });
             } else {
                 getTemplateList();
             }
