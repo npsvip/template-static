@@ -537,7 +537,7 @@ p {
 }
 .fh5co-post-entry article h2 {
     font-family: "Playfair Display", times, serif;
-    font-size: 22px;
+    font-size: 19px;
     color: #000;
     margin-bottom: 30px;
 }
@@ -866,7 +866,7 @@ figure figcaption {
     text-align: left !important;
     position: relative;
     top: -30px;
-    padding:0 50px;
+    padding:0 35px;
 }
 .fh5co-nav-toggle {
     position: absolute;
