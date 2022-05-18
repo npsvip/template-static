@@ -1843,6 +1843,27 @@ function getTemplateList(obj) {
                     }
                 });
             $("#layui-nav").html(navItem);
+
+            setTimeout(() => {
+                layui.use("element", function () {
+                    var element = layui.element;
+                    element.render("nav");
+                    element.on("nav(headerNav)", function (data) {
+                        setTimeout(() => {
+                            $(".classification .class-span").each((inde, item) => {
+                                item.style.color = "";
+                            });
+                            const classificationId = config.classification.filter(
+                                (item) => item.name == data[0].innerText
+                            )[0].id;
+                            config.classParams.classificationId = classificationId;
+                            getTemplateList(config.classParams);
+                        });
+                    });
+                    //…
+                });
+            }, 500);
+
             config.more.forEach((key) => {
                 if (res[key]) {
                     config[key] = [...res[key]];
@@ -1996,25 +2017,7 @@ function getTemplateList(obj) {
 
     // Document on load.
     $(document).ready(function () {
-        setTimeout(() => {
-            layui.use("element", function () {
-                var element = layui.element;
-                element.render("nav");
-                element.on("nav(headerNav)", function (data) {
-                    setTimeout(() => {
-                        $(".classification .class-span").each((inde, item) => {
-                            item.style.color = "";
-                        });
-                        const classificationId = config.classification.filter(
-                            (item) => item.name == data[0].innerText
-                        )[0].id;
-                        config.classParams.classificationId = classificationId;
-                        getTemplateList(config.classParams);
-                    });
-                });
-                //…
-            });
-        }, 500);
+
         // 注册验证
         formValidator("#register-form", function (params, $form) {
             delete params.captcha;
